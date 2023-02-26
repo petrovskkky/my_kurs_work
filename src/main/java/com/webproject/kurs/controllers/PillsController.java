@@ -14,34 +14,34 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
-public class BlogController {
+public class PillsController {
 
     @Autowired
     private PostRepository postRepository;
 
-    @GetMapping("/blog")
-    public String blogMain(Model model) {
+    @GetMapping("/blogPills")
+    public String blogPillsMain(Model model) {
         Iterable<Post> posts = postRepository.findAll();
         model.addAttribute("posts", posts);
         return "blog-main";
     }
 
-    @GetMapping("/blog/add")
-    public String blogAdd(Model model) {
+    @GetMapping("/blogPills/add")
+    public String blogPillsAdd(Model model) {
         return "blog-add";
     }
 
-    @PostMapping("/blog/add")
-    public String blogPostAdd(@RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model){
+    @PostMapping("/blogPills/add")
+    public String blogPillsPostAdd(@RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model){
         Post post = new Post(title, anons, full_text);
         postRepository.save(post);
-        return "redirect:/blog";
+        return "redirect:/blogPills";
     }
 
-    @GetMapping("/blog/{id}")
-    public String blogDetails(@PathVariable(value = "id") long id, Model model) {
+    @GetMapping("/blogPills/{id}")
+    public String blogPillsDetails(@PathVariable(value = "id") long id, Model model) {
         if (!postRepository.existsById(id)) {
-            return "redirect:/blog";
+            return "redirect:/blogPills";
         }
         Optional<Post> post = postRepository.findById(id);
         ArrayList<Post> res = new ArrayList<>();
@@ -50,10 +50,10 @@ public class BlogController {
         return "blog-details";
     }
 
-    @GetMapping("/blog/{id}/edit")
-    public String blogEdit(@PathVariable(value = "id") long id, Model model) {
+    @GetMapping("/blogPills/{id}/edit")
+    public String blogPillsEdit(@PathVariable(value = "id") long id, Model model) {
         if (!postRepository.existsById(id)) {
-            return "redirect:/blog";
+            return "redirect:/blogPills";
         }
         Optional<Post> post = postRepository.findById(id);
         ArrayList<Post> res = new ArrayList<>();
@@ -62,20 +62,20 @@ public class BlogController {
         return "blog-edit";
     }
 
-    @PostMapping("/blog/{id}/edit")
-    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model){
+    @PostMapping("/blogPills/{id}/edit")
+    public String blogPillsPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String anons, @RequestParam String full_text, Model model){
         Post post = postRepository.findById(id).orElseThrow();
         post.setTitle(title);
         post.setAnons(anons);
         post.setFull_text(full_text);
         postRepository.save(post);
-        return "redirect:/blog";
+        return "redirect:/blogPills";
     }
 
-    @PostMapping("/blog/{id}/remove")
-    public String blogPostRemove(@PathVariable(value = "id") long id, Model model){
+    @PostMapping("/blogPills/{id}/remove")
+    public String blogPillsPostRemove(@PathVariable(value = "id") long id, Model model){
         Post post = postRepository.findById(id).orElseThrow();
         postRepository.delete(post);
-        return "redirect:/blog";
+        return "redirect:/blogPills";
     }
 }
