@@ -10,12 +10,12 @@
         <header th:insert="blocks/header :: header"></header>
 
         <div class="container mt-5 mb-5">
-            <h1>Добавление статьи</h1>
+            <h1>Добавление записи</h1>
             <form action="/blogPills/add" method="post">
-                <input type="text" name="title" placeholder="Введите название таблеток" class="form-control"><br>
-                <input type="text" name="anons" placeholder="Введите анонс статьи" class="form-control"><br>
-                <textarea name="full_text" placeholder="Введите полный текст статьи" class="form-control"></textarea><br>
-                <button type="submit" class="btn btn-success">Добавить статью</button>
+                <input type="text" name="title" placeholder="Введите название лекартсва" class="form-control"><br>
+                <input type="text" name="anons" placeholder="Введите комментарий" class="form-control"><br>
+                <textarea name="full_text" placeholder="Введите дату и время применения" class="form-control"></textarea><br>
+                <button type="submit" class="btn btn-success">Добавить запись</button>
             </form>
         </div>
 

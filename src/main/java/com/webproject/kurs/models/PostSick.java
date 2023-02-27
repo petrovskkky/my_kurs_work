@@ -13,7 +13,6 @@ public class PostSick {
     private Long id;
 
     private String title, anons, full_text;
-    private int views;
 
     public Long getId() {
         return id;
@@ -45,14 +44,6 @@ public class PostSick {
 
     public void setFull_text(String full_text) {
         this.full_text = full_text;
-    }
-
-    public int getViews() {
-        return views;
-    }
-
-    public void setViews(int views) {
-        this.views = views;
     }
 
     public PostSick() {

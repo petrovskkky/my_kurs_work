@@ -38,18 +38,6 @@ public class SickController {
         return "redirect:/blogSick";
     }
 
-    @GetMapping("/blogSick/{id}")
-    public String blogSickDetails(@PathVariable(value = "id") long id, Model model) {
-        if (!postSickRepository.existsById(id)) {
-            return "redirect:/blogSick";
-        }
-        Optional<PostSick> postSick = postSickRepository.findById(id);
-        ArrayList<PostSick> res = new ArrayList<>();
-        postSick.ifPresent(res::add);
-        model.addAttribute("postSick", res);
-        return "blog-details-sick";
-    }
-
     @GetMapping("/blogSick/{id}/edit")
     public String blogSickEdit(@PathVariable(value = "id") long id, Model model) {
         if (!postSickRepository.existsById(id)) {

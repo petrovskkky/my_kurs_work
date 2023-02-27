@@ -38,18 +38,6 @@ public class PillsController {
         return "redirect:/blogPills";
     }
 
-    @GetMapping("/blogPills/{id}")
-    public String blogPillsDetails(@PathVariable(value = "id") long id, Model model) {
-        if (!postRepository.existsById(id)) {
-            return "redirect:/blogPills";
-        }
-        Optional<Post> post = postRepository.findById(id);
-        ArrayList<Post> res = new ArrayList<>();
-        post.ifPresent(res::add);
-        model.addAttribute("post", res);
-        return "blog-details";
-    }
-
     @GetMapping("/blogPills/{id}/edit")
     public String blogPillsEdit(@PathVariable(value = "id") long id, Model model) {
         if (!postRepository.existsById(id)) {
